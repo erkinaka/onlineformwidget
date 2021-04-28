@@ -41,9 +41,15 @@ $dbParams = array(
 
 
 Screenshots
-![alt text](https://github.com/[erkinaka]/[ onlineformwidget]/blob/[branch]/image.jpg?raw=true)
 
-![alt text](https://github.com/[username]/[reponame]/blob/[main]/image.jpg?raw=true)
+Manage Forms
+
+![](https://github.com/erkinaka/onlineformwidget/blob/main/screenshots/img1.png?raw=true)
+
+
+Add Form
+
+![](https://github.com/erkinaka/onlineformwidget/blob/main/screenshots/img2.png?raw=true)
 
 
  
