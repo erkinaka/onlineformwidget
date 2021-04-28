@@ -11,9 +11,9 @@ Build and publish online forms.
 
 ## Used Technologies:
 
-Laminas Framework -  github.com/laminas
-Form Builder Javascrip - github.com/kevinchappell/formBuilder
-PHP Excel - github.com/PHPOffice/PhpSpreadsheet
+* Laminas Framework -  https://github.com/laminas
+* Form Builder Javascrip - https://github.com/kevinchappell/formBuilder
+* PHP Excel - https://github.com/PHPOffice/PhpSpreadsheet
 
 
 ## About
@@ -45,12 +45,12 @@ $dbParams = array(
 
 ### Manage Forms
 
-![](https://github.com/erkinaka/onlineformwidget/blob/main/screenshots/img1.png?raw=true)
+![Manage Forms](https://github.com/erkinaka/onlineformwidget/blob/main/screenshots/img1.png?raw=true)
 
 
 ### Add Form
 
-![](https://github.com/erkinaka/onlineformwidget/blob/main/screenshots/img2.png?raw=true)
+![Add Form](https://github.com/erkinaka/onlineformwidget/blob/main/screenshots/img2.png?raw=true)
 
 
  
