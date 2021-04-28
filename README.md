@@ -40,6 +40,8 @@ $dbParams = array(
     'hostname' => 'localhost'
 );
 
+## Live Demo
+* https://sihirliform.com
 
 ## Screenshots
 
