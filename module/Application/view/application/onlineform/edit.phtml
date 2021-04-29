@@ -1,0 +1,118 @@
+<?php
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+$this->pageBreadcrumbs()->setItems([
+    'Forms / ' => ('/forms'),
+    'Edit' => ('edit'),
+]);
+$this->headLink()
+    ->prependStylesheet($this->basePath('formbuilder/css/demo.css'))
+    ->prependStylesheet($this->basePath('formbuilder/css/form-builder.min.css'))
+    ->prependStylesheet($this->basePath('formbuilder/css/form-render.min.css'));
+?>
+
+    <div class="content" id="formcontent">
+        <h1>Online Form Widget | ekokod.com</h1>
+        <h2>Form Title</h2>
+        <input type="text" id="form_title" name="form_title" required maxlength="140" value="<?php echo $title ?>"
+               placeholder="Başlığı giriniz. En fazla 140 karakter" style="width:100%;"/>
+        <pre style="visibility: hidden;width: 0px;height: 0px"><code style="visibility: hidden;width: 0px;height: 0px"
+                                                                     id="markup"></code></pre>
+        <div class="build-wrap">
+            <div style="padding: 10px;">
+                <h4><b>Form Settings *</b></h4>
+                <input type="checkbox" name="public" id="public" label="Public" value="public" <?php echo $public; ?>/>
+                Public Form
+                <br/>
+                <br/>
+                <h4>Form Design Area</h4>
+            </div>
+        </div>
+        <div class="render-wrap"></div>
+        <button id="edit-form" class="btn btn-info">Back to Design</button>
+    </div>
+<?php
+$this->inlineScript()
+    ->prependFile($this->basePath('formbuilder/js/form-render.min.js'))
+    ->prependFile($this->basePath('formbuilder/js/form-builder.min.js'))
+    ->prependFile($this->basePath('formbuilder/js/jquery.min.js'));
+?>
+<?php
+$this->inlineScript()->captureStart("", "", ['charset' => "ISO-8859-9"]); ?>
+    jQuery(document).ready(function ($) {
+    var buildWrap = document.querySelector('.build-wrap'),
+    renderWrap = document.querySelector('.render-wrap'),
+    editBtn = document.getElementById('edit-form'),
+    editing = true,
+    fbOptions = {
+    dataType: 'xml',
+    formData: '<?php echo $formdata ?>',
+    disableFields: [
+    'button',
+    'autocomplete',
+    'file',
+    'header',
+    'hidden'
+    ]
+    };
+
+    var toggleEdit = function () {
+    document.body.classList.toggle('form-rendered', editing);
+    editing = !editing;
+    };
+
+    var formBuilder = $(buildWrap).formBuilder(fbOptions).data('formBuilder');
+
+    $('.form-builder-save').click(function () {
+    //alert(formBuilder.formData);
+    var form_id="<?php echo $form_id ?>";
+    var escapeEl = document.createElement('textarea');
+    code = document.getElementById('markup');
+    escapeHTML = function (html) {
+    escapeEl.textContent = html;
+    return escapeEl.innerHTML;
+    };
+    formData = formBuilder.formData, addLineBreaks = function (html) {
+    var denemehtml;
+    denemehtml = html.replace(new RegExp('&gt; &lt;', 'g'), '&gt;\n&lt;').replace(new RegExp('&gt;&lt;', 'g'), '&gt;\n&lt;');
+    return denemehtml;
+    };
+    var title = document.getElementById('form_title').value;
+    var public = document.getElementById('public').checked;
+
+    var formRenderOpts = {
+    render: false,
+    formData: formData
+    };
+
+    var markup = (new FormRenderFn(formRenderOpts).markup);
+    code.innerHTML = addLineBreaks(markup);
+
+    var sayfa = "<?php echo $this->basePath(); ?>/formupdate";
+    var jqxhr = jQuery.post(sayfa, {formsablon: formBuilder.formData, form_html: markup, form_title: title,form_id:form_id, public:public}, function (data) {
+    <!--                alert(data);-->
+    window.location="<?php echo $this->basePath() . "/forms" ?>";
+    });
+    });
+
+    $('.view-data').click(function () {
+    $('#formcontent').css("background-color", "white");
+    toggleEdit();
+    $(renderWrap).formRender({
+    dataType: 'xml',
+    formData: formBuilder.formData
+    });
+
+    window.sessionStorage.setItem('formData', JSON.stringify(formBuilder.formData));
+    });
+
+    editBtn.onclick = function () {
+    $('#formcontent').css("background-color", "");
+    toggleEdit();
+    };
+    });
+<?php
+$this->inlineScript()->captureEnd(); ?>

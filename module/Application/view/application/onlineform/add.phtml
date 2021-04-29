@@ -1,0 +1,117 @@
+<?php
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+$this->pageBreadcrumbs()->setItems([
+    'Forms / ' => $this->url("forms"),
+    'Add' => ('add'),
+]);
+$this->headLink()
+    ->prependStylesheet($this->basePath('formbuilder/css/demo.css'))
+    ->prependStylesheet($this->basePath('formbuilder/css/form-builder.min.css'))
+    ->prependStylesheet($this->basePath( 'formbuilder/css/form-render.min.css'));
+?>
+<div class="content">
+    <h1>Online Form Widget | ekokod.com</h1>
+    <h2>Form Title</h2>
+    <input type="text" id="formbaslikerk" name="formbaslikerk" required maxlength="140" value=""
+           placeholder="Enter title, max 140 character" style="width:100%;"/>
+    <pre style="visibility: hidden;width: 0px;height: 0px"><code style="visibility: hidden;width: 0px;height: 0px" id="markup"></code></pre>
+    <div class="build-wrap">
+        <div style="padding: 10px;">
+            <h4><b>Form Settings *</b></h4>
+            <input type="checkbox" name="public" id="public" label="Public" value="public"/> Public Form
+            <br/>
+            <br/>
+            <h4>Form Design Area</h4>
+        </div>
+    </div>
+    <div class="render-wrap"></div>
+    <button id="edit-form" class="btn btn-info">Back to Design</button>
+</div>
+<?php
+$this->inlineScript()
+    ->prependFile($this->basePath('formbuilder/js/form-render.min.js'))
+    ->prependFile($this->basePath( 'formbuilder/js/form-builder.min.js'))
+    ->prependFile($this->basePath('formbuilder/js/jquery.min.js'));
+
+?>
+<?php
+$this->inlineScript()->captureStart("", "", ['charset' => "ISO-8859-9"]); ?>
+jQuery(document).ready(function ($) {
+var buildWrap = document.querySelector('.build-wrap'),
+renderWrap = document.querySelector('.render-wrap'),
+editBtn = document.getElementById('edit-form'),
+formData = window.sessionStorage.getItem('formData'),
+editing = true,
+fbOptions = {
+dataType: 'xml',
+disableFields: [
+'autocomplete',
+'button',
+'file',
+'header',
+'hidden'
+]
+};
+if (formData) {
+//fbOptions.formData = JSON.parse(formData);
+}
+var toggleEdit = function () {
+document.body.classList.toggle('form-rendered', editing);
+editing = !editing;
+};
+var formBuilder = $(buildWrap).formBuilder(fbOptions).data('formBuilder');
+$('.form-builder-save').click(function () {
+$(this).prop("disabled", true);
+if ($('#formbaslikerk').val()){
+//alert(formBuilder.formData);
+var escapeEl = document.createElement('textarea');
+code = document.getElementById('markup');
+escapeHTML = function (html) {
+escapeEl.textContent = html;
+return escapeEl.innerHTML;
+};
+
+formData = formBuilder.formData, addLineBreaks = function (html) {
+var temp_html;
+temp_html = html.replace(new RegExp('&gt; &lt;', 'g'), '&gt;\n&lt;').replace(new RegExp('&gt;&lt;', 'g'), '&gt;\n&lt;');
+return temp_html;
+};
+var title_text = document.getElementById('formbaslikerk').value;
+var public_add = document.getElementById('public').checked;
+
+var formRenderOpts = {
+render: false,
+formData: formData
+};
+var markup = (new FormRenderFn(formRenderOpts).markup);
+code.innerHTML = addLineBreaks(markup);
+//alert(publicadd);
+var sayfa = "<?php echo $this->basePath(); ?>/onlineform/formsave";
+var jqxhr = jQuery.post(sayfa, {form_template: formBuilder.formData, form_html: markup, form_title: title_text, public:public_add}, function (data) {
+
+window.location="<?php echo $this->basePath() . "/forms"; ?>";
+});
+}
+else {
+alert ("Please Enter the Title of Form!!!");
+$(this).prop("disabled", false);
+}
+});
+$('.view-data').click(function () {
+toggleEdit();
+$(renderWrap).formRender({
+dataType: 'xml',
+formData: formBuilder.formData
+});
+window.sessionStorage.setItem('formData', JSON.stringify(formBuilder.formData));
+});
+editBtn.onclick = function () {
+toggleEdit();
+};
+});
+<?php
+$this->inlineScript()->captureEnd(); ?>

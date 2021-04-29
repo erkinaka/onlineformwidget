@@ -1,0 +1,35 @@
+<?php
+$this->headTitle($title);
+echo $this->headTitle();
+if ($action_flag==0){
+?>
+
+<div style="margin:auto;width:90%;background-color: #fff;;padding: 30px;">
+<h1><?php echo $title ?></h1>
+<hr>
+<div class="content" id="formcontent">
+    <form name="formgoster" id="" role="formolustur" action="/showform/<?php echo $form_id."/".$hidden_url;?>" method="post" style="padding: 20px;">
+      <!--<div class="render-wrap">-->
+  <?php
+  echo $form_data;
+  ?>
+      <br/>
+      <input type="hidden" value="<?php echo $form_id;?>" name="formid2"/>
+      <button type="reset" value="Reset" class="btn btn-info">Formu Temizle</button>
+      <button name="formgonder" type="submit" class="btn btn-success" value="gonder">Formu Gönder</button>
+   
+     <!--</div>-->
+      </form>
+    </div>
+</div>
+<?php
+}
+else if($action_flag==1){
+    echo "<h1>Formu daha önce cevaplamışsınız. Eğer tekrar göndermek istiyorsanız sistem yöneticisi ile iletişim kurun!</h1>";
+    
+}
+else if($action_flag==2){
+    echo "<h1>Form başarı ile gönderildi! Teşekkürler.</h1>";
+    
+}
+?>

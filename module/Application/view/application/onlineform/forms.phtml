@@ -1,0 +1,351 @@
+<?php
+$title = 'All Forms';
+$this->headTitle($title);
+$this->pageBreadcrumbs()->setItems([
+    'All Forms' => $this->url('forms'),
+]);
+echo $this->headTitle();
+?>
+<!-- css -->
+<!-- the custom UI is based on jQueryUI theme you've downloaded -->
+<?php
+$this->headLink()
+    ->prependStylesheet($this->basePath() . '/css/custom.css')
+    ->prependStylesheet($this->basePath() . '/bootstrap/datatables/dataTables.min.css');
+?>
+<!-- Js -->
+
+<section class="content-header">
+    <h1>
+        <?php echo $this->escapeHtml($title); ?>
+    </h1>
+</section>
+<form name="form_filter" id="form_filter" role="form" action="<?php echo $this->url('forms', ['page' => $page]); ?>"
+      method="post">
+    <section class="content">
+        <div class="box">
+            <div class="box-header" style="vertical-align: middle">
+                <h4 style="padding-left:10px;">Filter</h4>
+                <div class="searchdiv" style="float:left;margin-left: 10px;">Title<br/>
+                    <input type="text" class="form-control" id="search" name="search" value=""/>
+                </div>
+                <div style="float:left; margin-left: 10px;"><br/>
+                    <input name="submitfiltre" type="submit" value="Search" class="btn btn-warning btn-rounded"/>
+                    <a href="<?php echo $this->url('forms'); ?>" class="btn btn-info btn-rounded">Show All</a>
+                </div>
+                <div style="clear: both;"></div>
+                <span id="searchwarning" style="color:#ff0000"></span>
+                <div style="clear:both;"></div>
+                <hr>
+            </div><!-- /.box-header -->
+            <p>
+                <a class="btn btn-success" href="/add">
+                    New Form
+                </a>
+            </p>
+            <div class="box-body table-responsive">
+                <?php
+                $url_order = 'ASC';  // the following lines
+                if ($orderby == 'title')
+                    $url_order = $ordertype == 'ASC' ? 'DESC' : 'ASC';
+                elseif ($orderby == 'status')
+                    $url_order = $ordertype == 'ASC' ? 'DESC' : 'ASC';
+                elseif ($orderby == 'created_date')
+                    $url_order = $ordertype == 'ASC' ? 'DESC' : 'ASC';
+                ?>
+
+                <table class="table table-hover dataTable">
+                    <thead>
+                    <tr role="row" style="background-color: #fbfbfb">
+                        <th style="width:20px">&nbsp;</th>
+                        <th style="width:35px"><input type="checkbox" class="checkall" id="selectAll"/>Select All</th>
+                        <th style="width:350px"
+                            class="<?php if ($orderby == 'title') { ?>
+                            <?php echo $url_order == 'ASC' ? 'sorting_asc' : 'sorting_desc' ?><?php
+                            } else {
+                                echo 'sorting';
+                            }
+                            ?>">
+                            <a href="<?php echo $this->url('forms', ['orderby' => 'title', 'ordertype' => $url_order, 'search' => $search]); ?>">Form</a>
+                        </th>
+
+                        <th style="width:150px"
+                            class="<?php if ($orderby == 'created_date') { ?>
+                            <?php echo $url_order == 'ASC' ? 'sorting_asc' : 'sorting_desc' ?><?php
+                            } else {
+                                echo 'sorting';
+                            }
+                            ?>">
+                            <a href="<?php echo $this->url('forms', ['orderby' => 'created_date', 'ordertype' => $url_order, 'search' => $search]); ?>">Created
+                                Date </a>
+                        </th>
+                        <th style="width:80px"
+                            class="<?php if ($orderby == 'status') { ?>
+                            <?php echo $url_order == 'ASC' ? 'sorting_asc' : 'sorting_desc' ?><?php
+                            } else {
+                                echo 'sorting';
+                            }
+                            ?>">
+                            <a href="<?php echo $this->url('forms', ['orderby' => 'status', 'ordertype' => $url_order, 'search' => $search]); ?>">Status </a>
+                            <br/><input name="submitstatus" type="submit" value="Save"
+                                        class="btn btn-info btn-rounded"/>
+                        </th>
+                        <th style="width:100px">
+                            Respondents
+
+                        </th>
+
+                        <th style="width:180px">&nbsp;</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    $i = $paginator->getCurrentPageNumber() * 20 - 19;
+                    foreach ($paginator as $row) :
+                        ?>
+                        <tr>
+                            <td><?php echo $i; ?>
+                                <input type="hidden" name="row<?php echo $i ?>" value="<?php echo $row->id ?>"/>
+                            </td>
+                            <td><?php echo '<input type="checkbox" name="delete' . $row->id . '" id="silcheck"/>'; ?></td>
+                            <td>
+                                <?php echo $this->escapeHtml($row->title); ?><br/><br/>
+                                <span>Form Bağlantısı: <?php echo $this->serverUrl() . $this->url('showform', array('id' => $row->id, 'hidden_url' => $row->hidden_url)); ?></span>
+                                <a target="_blank" class="btn btn-sm btn-primary "
+                                   href="<?php echo $this->url('showform', array('id' => $row->id, 'hidden_url' => $row->hidden_url));
+                                   ?>">Show Form </a>
+								
+								<!--Change this "http://www.sihirliform.com" domain name in the following line with your own domain -->
+                                <button type="button" class="btn btn-sm btn-success" data-toggle="modal"
+                                        data-whatever="<?php echo '<iframe src=\'http://www.sihirliform.com/showformsite/' . $row->id . '/' . $row->hidden_url . '\'></iframe>'; ?>"
+                                        data-target="#modal-success">
+                                    Add to Your Site
+                                </button>
+
+                            <td><?php
+                                if ($row->created_date <> "") {
+                                    echo date("d.m.Y", strtotime($this->escapeHtml($row->created_date)));
+                                }
+                                ?></td>
+
+                            <td>
+                                <?php
+                                if ($row->status == 1) {
+                                    echo '<input type="checkbox" name="row_status' . $row->id . '" checked/>';
+                                } else {
+                                    echo '<input type="checkbox" name="row_status' . $row->id . '"/>';
+                                }
+                                ?>
+                            </td>
+                            <td><?php echo($row->respond_count); ?>
+                                <a class="btn btn-sm btn-info"
+                                   href="<?php echo $this->url('onlineform', array('action' => 'report', 'id' => $row->id));
+                                   ?>"> Report</a>
+                            </td>
+                            <td>
+                                <a class="btn btn-sm btn-info"
+                                   href="<?php echo $this->url('edit', array('id' => $row->id));
+                                   ?>"> Edit</a>
+                               
+                                <button name="delete-one" type="button" data-toggle="modal"
+                                        data-target="#modal-delete-one" data-whatever="<?php echo $row->id; ?>"
+                                        class="mr-1 btn btn-sm btn-danger"/>
+                                Delete</button>
+                            </td>
+                        </tr>
+                        <?php
+                        $i++;
+                    endforeach;
+                    ?>
+                    </tbody>
+                </table>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+        <!--<input type="hidden" name="sirakaydet" value="1" />-->
+        <div class="row">
+            <div class="col-6">
+                <button name="deletemulti" type="button" data-toggle="modal" data-target="#modal-delete-selected"
+                        class="mr-1 btn btn-sm btn-danger"/>
+                Delete Selecteds</button>
+                (Deleted items can not be undone!)
+
+                <input type="hidden" name="rowcount" value="<?php echo $paginator->getcurrentItemCount(); ?>"/>
+                <input type="hidden" name="rownumber"
+                       value="<?php echo ($paginator->getCurrentPageNumber() - 1) * 20 + 1; ?>"/>
+                <!--<input type="hidden" name="sirakaydet" value="1" />-->
+            </div>
+            <div class="col-6 d-flex justify-content-end">
+                <?php
+                // add at the end of the file after the table
+                echo $this->paginationControl(
+                // the paginator object
+                    $this->paginator,
+                   'sliding',
+                    // the partial to use to render the control
+                    array('partial/paginatorurl.phtml', 'Formlar'),
+                    // the route to link to when a user clicks a control link
+                    array(
+                        'route' => 'forms', 'orderby' => $orderby, 'ordertype' => $ordertype, 'search' => $search
+                    )
+                );
+                ?>
+            </div>
+        </div>
+
+    </section>
+    <div id="login-box" class="login-popup">
+        <p style="color:#000;"><span id="sonuclar2">Please Wait...</span></p>
+    </div>
+
+    <div class="modal fade" id="modal-success" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sitene Ekle</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>You can use the code which is below, in your site. (Copy and Paste) </p>
+                </div>
+
+                <div class="modal-body bg-color" id="modal-dynamic-content">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-delete-one" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure to delete ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button name="delete-one" id="button-delete-one" type="submit" value="" class="yes btn btn-danger">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="modal-delete-selected" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Warning</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure to delete selected items ?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button name="delete-selected" id="button-delete-selected" type="submit" value="1"
+                            class="btn btn-danger">
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.modal -->
+</form>
+<?php
+
+$this->inlineScript()
+    ->prependFile('/bootstrap/datatables/dataTables.min.js')
+?>
+<?php
+$this->inlineScript()->captureStart("", "", ['charset' => "ISO-8859-9"]); ?>
+
+mask();
+
+clearmask();
+
+function mask()
+{
+jQuery('#login-box').fadeIn(300);
+//Set the center alignment padding + border see css style
+var popMargTop = (jQuery('#login-box').height() + 24) / 2;
+var popMargLeft = (jQuery('#login-box').width() + 24) / 2;
+
+jQuery('#login-box').css({
+'margin-top': -popMargTop,
+'margin-left': -popMargLeft
+});
+
+// Add the mask to body
+jQuery('body').append('<div id="mask"></div>');
+jQuery('#mask').fadeIn(300);
+return false;
+}
+
+function clearmask() {
+jQuery('#mask , .login-popup').fadeOut(300, function () {
+jQuery('#mask').remove();
+return false;
+});
+}
+jQuery(document).on('click', 'a.modal_close, #mask', function () {
+jQuery('#mask , .login-popup').fadeOut(300, function () {
+jQuery('.login-popup').css('height', '');
+jQuery('.login-popup').css('height', '');
+jQuery('.login-popup').css('overflow', '');
+jQuery('#mask').remove();
+jQuery('#aciklama').val("");
+});
+return false;
+});
+
+jQuery('#selectAll').click(function (e) {
+jQuery(this).closest('table').find('td #silcheck').prop('checked', this.checked);
+});
+
+jQuery("div.searchdiv > #search").val("<?php echo $search; ?>");
+
+jQuery('#form_filter').submit(function (e) {
+var inputsayisi = (jQuery('div.searchdiv > #ara').val()).length;
+if (inputsayisi > 0 && inputsayisi < 3) {
+jQuery('#searchwarning').html('Aranacak kelime uzunluğu 3 karakterden az olamaz!');
+e.preventDefault();
+}
+});
+
+$('#modal-success').on('show.bs.modal', function (event) {
+var button = $(event.relatedTarget) // Button that triggered the modal
+var baglanti = button.data('whatever') // Extract info from data-* attributes
+// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+var modal = $(this)
+//modal.find('.modal-title').text('New message to ' + recipient)
+modal.find('#modal-dynamic-content').text(baglanti)
+})
+
+$('#modal-delete-one').on('show.bs.modal', function (event) {
+var button = $(event.relatedTarget) // Button that triggered the modal
+var baglanti = button.data('whatever') // Extract info from data-* attributes
+// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+var modal = $(this)
+//modal.find('.modal-title').text('New message to ' + recipient)
+modal.find('#button-delete-one').val(baglanti)
+})
+<?php
+$this->inlineScript()->captureEnd(); ?>
