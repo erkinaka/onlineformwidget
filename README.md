@@ -35,7 +35,7 @@ After creating and publishing forms, you can collect and report results.
 
 1. You should change the following lines with your configuration which are in config/autoload/global.php
 
-#### `$dbParams = array(
+`$dbParams = array(
     'database' => 'onlineformwidget',
     'username' => 'root',
     'password' => '',
