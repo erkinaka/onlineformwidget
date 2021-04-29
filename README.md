@@ -29,7 +29,7 @@ After creating and publishing forms, you can collect and report results.
 
 1. To download neccessary packages you should run the following code in a terminal at your project directory. (You will need to install composer.) This command will create vendor folder and install Laminas and other packages.
 
-####'composer.install'
+#### 'composer.install'
 
 1. For database, you should use sql file which is in the project’s database directory.
 
