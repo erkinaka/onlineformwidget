@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4e57e8f6-7237-46af-803c-ea7bae8dd378" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+    <execution />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/type-resolver" />
+      <path value="$PROJECT_DIR$/vendor/container-interop/container-interop" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-common" />
+      <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
+      <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
+      <path value="$PROJECT_DIR$/vendor/webimpress/safe-writer" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/type" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/version" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/recursion-context" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/resource-operations" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-enumerator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/object-reflector" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/lines-of-code" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/exporter" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/complexity" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/diff" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/comparator" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/cli-parser" />
+      <path value="$PROJECT_DIR$/vendor/sebastian/code-unit" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/instantiator" />
+      <path value="$PROJECT_DIR$/vendor/phpoffice/phpexcel" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-timer" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/phpunit" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-invoker" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-text-template" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-code-coverage" />
+      <path value="$PROJECT_DIR$/vendor/phpunit/php-file-iterator" />
+      <path value="$PROJECT_DIR$/vendor/phar-io/version" />
+      <path value="$PROJECT_DIR$/vendor/phpspec/prophecy" />
+      <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
+      <path value="$PROJECT_DIR$/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-view" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-zendframework-bridge" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-uri" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-validator" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-stdlib" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-test" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-session" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-skeleton-installer" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-router" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-servicemanager" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-paginator" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-psr7bridge" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-mvc-plugin-identity" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-mvc-plugin-prg" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-mvc-plugin-fileprg" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-mvc-plugin-flashmessenger" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-mvc" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-mvc-i18n" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-log" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-modulemanager" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-json" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-loader" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-inputfilter" />
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-i18n" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-http" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-hydrator" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-filter" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-form" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-escaper" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-eventmanager" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-diactoros" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-dom" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-development-mode" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-di" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-console" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-db" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-component-installer" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-config" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-authentication" />
+      <path value="$PROJECT_DIR$/vendor/laminas/laminas-code" />
+      <path value="$PROJECT_DIR$/vendor/brick/varexporter" />
+      <path value="$PROJECT_DIR$/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-factory" />
+    </include_path>
+  </component>
+  <component name="ProjectId" id="1qJEqcA09kkM45ZsnXjCp5bRy6d" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/module/Fatihform/src" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\onlineformwidget\module\Fatihform\src" />
+      <recent name="D:\xampp\htdocs\onlineformwidget\module\Fatihform\view" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\onlineformwidget\public" />
+      <recent name="D:\xampp\htdocs\onlineformwidget\public\bootstrap\datatables" />
+      <recent name="D:\xampp\htdocs\onlineformwidget\public\bootstrap\datatables\sil" />
+      <recent name="D:\xampp\htdocs\onlineformwidget\module\Application\view\partial\sil" />
+      <recent name="D:\xampp\htdocs\onlineformwidget\module\Application\view\partial" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4e57e8f6-7237-46af-803c-ea7bae8dd378" name="Default Changelist" comment="" />
+      <created>1616789485099</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1616789485099</updated>
+      <workItem from="1616789487242" duration="3529000" />
+      <workItem from="1617085918012" duration="8741000" />
+      <workItem from="1618000702083" duration="30240000" />
+      <workItem from="1618132939883" duration="17743000" />
+      <workItem from="1618430944827" duration="592000" />
+      <workItem from="1618505202066" duration="595000" />
+      <workItem from="1618569137601" duration="21000" />
+      <workItem from="1618569253798" duration="2034000" />
+      <workItem from="1618603930989" duration="3067000" />
+      <workItem from="1618667053170" duration="5734000" />
+      <workItem from="1618779459164" duration="3562000" />
+      <workItem from="1618904374165" duration="12390000" />
+      <workItem from="1618930645155" duration="6508000" />
+      <workItem from="1619033675435" duration="5763000" />
+      <workItem from="1619081001457" duration="7547000" />
+      <workItem from="1619125976040" duration="3308000" />
+      <workItem from="1619270971562" duration="1323000" />
+      <workItem from="1619376857638" duration="8648000" />
+      <workItem from="1619435579134" duration="4335000" />
+      <workItem from="1619509744797" duration="2581000" />
+      <workItem from="1619516651802" duration="5535000" />
+      <workItem from="1619542277432" duration="9670000" />
+      <workItem from="1619595007856" duration="9162000" />
+      <workItem from="1619625789032" duration="1963000" />
+      <workItem from="1619688578076" duration="1222000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
