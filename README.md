@@ -27,18 +27,27 @@ After creating and publishing forms, you can collect and report results.
 
 1. Clone or download the repository to your computer. 
 
-1. To download neccessary packages you should run the following code in a terminal at your project directory. (You will need to install composer.)
+1. To download neccessary packages you should run the following code in a terminal at your project directory. (You will need to install composer.) This command will create vendor folder and install Laminas and other packages.
+
+#### `composer.install`
 
 1. For database, you should use sql file which is in the project’s database directory.
 
 1. You should change the following lines with your configuration which are in config/autoload/global.php
 
+```
 $dbParams = array(
+
     'database' => 'onlineformwidget',
+	
     'username' => 'root',
+	
     'password' => '',
+	
     'hostname' => 'localhost'
+	
 );
+```
 
 ## Live Demo
 * https://sihirliform.com
